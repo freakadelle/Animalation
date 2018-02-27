@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor;
 
 public class LevelGenerator : MonoBehaviour {
 
@@ -10,8 +11,26 @@ public class LevelGenerator : MonoBehaviour {
 	public ColorToPrefab[] colorMappings;
     public GameObject flagPoint;
 
+    public static void SetTextureImporterFormat(Texture2D texture, bool isReadable)
+    {
+        if (null == texture) return;
+
+        string assetPath = AssetDatabase.GetAssetPath(texture);
+        var tImporter = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+        if (tImporter != null)
+        {
+            tImporter.textureType = TextureImporterType.Default;
+
+            tImporter.isReadable = isReadable;
+
+            AssetDatabase.ImportAsset(assetPath);
+            AssetDatabase.Refresh();
+        }
+    }
+
     // Use this for initialization
     void Awake () {
+        SetTextureImporterFormat(map, true);
         Instance = this;
 		GenerateLevel ();		
 	}
