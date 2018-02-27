@@ -36,7 +36,7 @@ public class PlayerBrain : NetworkBehaviour
 
 		playerCharacter = GetComponent<PlayerCharacter>();
 		// pc = this.transform.GetChild(0).GetComponent<PlayerCharacter>();
-		Debug.Log("Not local, could process input");
+		//Debug.Log("Not local, could process input");
 
         if(isOfflinePlayer)
         {

@@ -17,12 +17,7 @@ public class BombingActionMoves : NetworkBehaviour {
     public float throwingPowerMax;
 
     private bool isThrowHolding;
-
-	    private bool fireItUp;					  
-	// Use this for initialization
-	void Start () {
-		
-	}
+	private bool fireItUp;					  
 	
 	// Update is called once per frame
 	void Update () {
@@ -52,7 +47,7 @@ public class BombingActionMoves : NetworkBehaviour {
 		
         if(inputSkill2Up)
         {
-            boomScoreNow();
+            doDownBoom();
         }
     }
 		    private void FixedUpdate()
@@ -66,9 +61,10 @@ public class BombingActionMoves : NetworkBehaviour {
             fireItUp = false;
         }
     } 
-    private void boomScoreNow()
+    private void doDownBoom()
     {
         BoomBall.Instance.triggerThisJealousBoom();
+        SendMessageUpwards("OnDownBoom", gameObject);
     }
 
     private void throwBall()

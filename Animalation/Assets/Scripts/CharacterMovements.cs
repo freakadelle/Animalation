@@ -58,8 +58,22 @@ public class CharacterMovements : NetworkBehaviour
         }
     }
 
+    private void interruptControls()
+    {
+        inputXMoveVel = 0;
+        inputYMoveVel = 0;
+        inputJumpDown = false;
+        inputJumpUp = false;
+    }
+
     private void Update()
     {
+        if (MatchRuntime.Instance.ActiveState != MatchRuntimeStates.matchRunning)
+        {
+            interruptControls();
+            //return;
+        }
+
         if (inputJumpDown)
         {
             jumpingCount++;
@@ -76,6 +90,13 @@ public class CharacterMovements : NetworkBehaviour
 
     private void FixedUpdate()
     {
+
+        if (MatchRuntime.Instance.ActiveState != MatchRuntimeStates.matchRunning)
+        {
+            interruptControls();
+            //return;
+        }
+
         if (inputXMoveVel < 0)
             isFacingRight = false;
             
@@ -106,7 +127,6 @@ public class CharacterMovements : NetworkBehaviour
         //Process Jump
         if (jumpingDown && !isJumping && jumpingCount < maxAirJumps)
         {
-            Debug.Log("IMPULSE JUMPING");
             rig.gravityScale = 1;
             rig.velocity = Vector2.zero;
             rig.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);

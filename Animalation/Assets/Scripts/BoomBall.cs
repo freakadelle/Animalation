@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BoomBall : MonoBehaviour {
 
     public static BoomBall Instance;
+
+    public UnityEvent OnFieldBoom;
 
     private Collider2D collider;
     private Animator animator;
@@ -22,11 +25,6 @@ public class BoomBall : MonoBehaviour {
         
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 
@@ -37,10 +35,8 @@ public class BoomBall : MonoBehaviour {
 
     public void triggerThisJealousBoom()
     {
-        GameStatics.Instance.spawnExplosion(transform.position);
-
         Camera.main.GetComponent<CameraMovement>().target = MatchRuntime.Instance.activePlayer.transform;
-
+        GameStatics.Instance.spawnExplosion(transform.position);
         Destroy(gameObject);
     }
 

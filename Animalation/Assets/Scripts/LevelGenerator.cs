@@ -32,7 +32,7 @@ public class LevelGenerator : MonoBehaviour {
     void Awake () {
         SetTextureImporterFormat(map, true);
         Instance = this;
-		GenerateLevel ();		
+		//GenerateLevel ();		
 	}
 	
 	// Update is called once per frame
@@ -40,7 +40,7 @@ public class LevelGenerator : MonoBehaviour {
 		
 	}
 
-	void GenerateLevel() {
+	public void GenerateLevel() {
 		//foreach(ColorToPrefab colorMapping in colorMappings) {
 		//	//Debug.Log("Colormapping " + colorMapping.color);
 		//}

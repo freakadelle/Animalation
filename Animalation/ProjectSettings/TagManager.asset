@@ -13,6 +13,7 @@ TagManager:
   - PlayerSelection
   - CharacterSelection
   - ServerInf
+  - FieldGoal
   layers:
   - Default
   - TransparentFX

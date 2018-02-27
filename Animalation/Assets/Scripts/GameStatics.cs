@@ -28,9 +28,11 @@ public class GameStatics : MonoBehaviour {
         explosion.transform.position = _pos;
     }
 
-    public void spawnBoomBall(Vector3 _pos)
+    public BoomBall spawnBoomBall(Vector3 _pos)
     {
         GameObject boomBall = Instantiate(boomBallObj) as GameObject;
         boomBall.transform.position = _pos;
+        boomBall.transform.parent = MatchRuntime.Instance.transform;
+        return boomBall.GetComponent<BoomBall>();
     }
 }
