@@ -43,8 +43,14 @@ public class PlayerCharacter : NetworkBehaviour {
 		thr.RpcRecieveInputs(_skill1Down, _skill1Up, _skill2Up);
 	}
 
-	// If disabled, destroy.
-	void OnDisable() {
+    public void CalculateInput(float _x, bool _jumpDown, bool _jumpUp, bool _skill1Down, bool _skill1Up, bool _skill2Up, bool _skill3)
+    {
+        cm.RecieveInputs(_x, _jumpDown, _jumpUp);
+        thr.RecieveInputs(_skill1Down, _skill1Up, _skill2Up);
+    }
+
+    // If disabled, destroy.
+    void OnDisable() {
 		Destroy(this.gameObject);
 	}
 }

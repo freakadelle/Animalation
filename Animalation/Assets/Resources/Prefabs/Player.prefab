@@ -26,6 +26,8 @@ GameObject:
   - component: {fileID: 114258034765925496}
   - component: {fileID: 95654670398113888}
   - component: {fileID: 114996028028709328}
+  - component: {fileID: 114125851488166310}
+  - component: {fileID: 114897494739416116}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -98,6 +100,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114125851488166310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1781159601159428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dce166d180b4634ea3d503d7a390d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCharacter: {fileID: 0}
+  isOfflinePlayer: 1
 --- !u!114 &114258034765925496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,8 +127,8 @@ MonoBehaviour:
   boomballRig: {fileID: 0}
   hasBall: 0
   throwingDir: {x: 1, y: 1}
-  throwingPower: 0
   throwingMinPower: 7
+  throwingPower: 0
   throwingPowerGain: 15
   throwingPowerMax: 50
 --- !u!114 &114873191772789886
@@ -138,6 +153,38 @@ MonoBehaviour:
   maxAirJumps: 2
   bounceFactor: 3
   maxVelocity: {x: 20, y: 100}
+--- !u!114 &114897494739416116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1781159601159428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 168
+    i1: 96
+    i2: 98
+    i3: 128
+    i4: 105
+    i5: 193
+    i6: 89
+    i7: 116
+    i8: 235
+    i9: 162
+    i10: 145
+    i11: 208
+    i12: 212
+    i13: 237
+    i14: 207
+    i15: 90
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114996028028709328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,10 +193,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1781159601159428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f32ac9a3c1d4c74ea70e62c5526ed47, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ad378094dfde6f499b2b8d7f057a521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cRace: 0
+  cClass: 0
+  teamTag: 0
   team: 0
+  cm: {fileID: 0}
+  thr: {fileID: 0}
 --- !u!212 &212632738902559290
 SpriteRenderer:
   m_ObjectHideFlags: 1

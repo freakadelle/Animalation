@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System;
 
 public class CharacterMovements : NetworkBehaviour
 {
@@ -45,8 +46,16 @@ public class CharacterMovements : NetworkBehaviour
         rig = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         distToGround = collider.bounds.extents.y;
-        renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        anim = transform.GetChild(0).GetComponent<Animator>();
+
+        try
+        {
+            renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+            anim = transform.GetChild(0).GetComponent<Animator>();
+        } catch(Exception e)
+        {
+            renderer = GetComponent<SpriteRenderer>();
+            anim = GetComponent<Animator>();
+        }
     }
 
     private void Update()
@@ -62,7 +71,6 @@ public class CharacterMovements : NetworkBehaviour
             isJumping = false;
             jumpingDown = false;
         }
-
         anim.SetFloat("velocity", rig.velocity.y);
     }
 
@@ -125,7 +133,18 @@ public class CharacterMovements : NetworkBehaviour
         moveVel = new Vector2(xVel, yVel);
         rig.velocity = moveVel;
 
-        CmdProcessFlip(isFacingRight);
+        if(GetComponent<PlayerBrain>().isOfflinePlayer)
+        {
+            ProcessFlip(isFacingRight);
+        } else
+        {
+            CmdProcessFlip(isFacingRight);
+        }
+    }
+
+    private void ProcessFlip(bool _isRight)
+    {
+        renderer.flipX = _isRight;
     }
 
     [Command]
@@ -153,6 +172,14 @@ public class CharacterMovements : NetworkBehaviour
             rig.velocity = new Vector2(rig.velocity.x, -bounceFactor);
             anim.SetBool("grounded", true);
         }
+    }
+
+    public void RecieveInputs(float _x, bool _jumpDown, bool _jumpUp)
+    {
+
+        inputXMoveVel = _x;
+        inputJumpDown = _jumpDown;
+        inputJumpUp = _jumpUp;
     }
 
     [ClientRpc]

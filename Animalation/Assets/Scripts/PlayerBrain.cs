@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 
 public class PlayerBrain : NetworkBehaviour
 {
-    public PlayerCharacter pc;
+    public PlayerCharacter playerCharacter;
+    public bool isOfflinePlayer;
 
 	void OnStartAuthority() {
 		Debug.Log("Si");
@@ -14,7 +15,7 @@ public class PlayerBrain : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isLocalPlayer || !hasAuthority)
+        if ((!isLocalPlayer || !hasAuthority) && !isOfflinePlayer)
         {
 			if(isLocalPlayer)
 				Debug.Log("Local");
@@ -33,10 +34,19 @@ public class PlayerBrain : NetworkBehaviour
 			RpcTest();
 		}
 
-		pc = GetComponent<PlayerCharacter>();
+		playerCharacter = GetComponent<PlayerCharacter>();
 		// pc = this.transform.GetChild(0).GetComponent<PlayerCharacter>();
 		Debug.Log("Not local, could process input");
-		pc.CmdCalculateInput(Input.GetAxisRaw("Horizontal"), Input.GetButtonDown("Jump"), Input.GetButtonUp("Jump"), Input.GetButtonDown("Fire1"), Input.GetButtonUp("Fire1"), Input.GetButtonUp("Fire2"), Input.GetButton("Fire3"));
+
+        if(isOfflinePlayer)
+        {
+            playerCharacter.CalculateInput(Input.GetAxisRaw("Horizontal"), Input.GetButtonDown("Jump"), Input.GetButtonUp("Jump"), Input.GetButtonDown("Fire1"), Input.GetButtonUp("Fire1"), Input.GetButtonUp("Fire2"), Input.GetButton("Fire3"));
+        } else
+        {
+            playerCharacter.CmdCalculateInput(Input.GetAxisRaw("Horizontal"), Input.GetButtonDown("Jump"), Input.GetButtonUp("Jump"), Input.GetButtonDown("Fire1"), Input.GetButtonUp("Fire1"), Input.GetButtonUp("Fire2"), Input.GetButton("Fire3"));
+        }
+
+		
 	}
 
 	[Command]

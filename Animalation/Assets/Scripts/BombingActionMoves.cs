@@ -109,4 +109,11 @@ public class BombingActionMoves : NetworkBehaviour {
         inputSkill1Up = _skill1Up;
         inputSkill2Up = _skill2Up;
     }
+
+    public void RecieveInputs(bool _skill1Down, bool _skill1Up, bool _skill2Up)
+    {
+        inputSkill1Down = _skill1Down;
+        inputSkill1Up = _skill1Up;
+        inputSkill2Up = _skill2Up;
+    }
 }
