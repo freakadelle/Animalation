@@ -136,6 +136,16 @@ public class MatchRuntime : MonoBehaviour
         activeState++;
     }
 
+    private void setState(int _stateID)
+    {
+        activeState = (MatchRuntimeStates)_stateID;
+    }
+
+    private void setState(MatchRuntimeStates _state)
+    {
+        activeState = _state;
+    }
+
     private GameObject spawnPlayer()
     {
         GameObject _player = Instantiate(GameStatics.Instance.playerObj) as GameObject;
