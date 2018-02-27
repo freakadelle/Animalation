@@ -1,0 +1,9 @@
+    bool inputSkill1Down = false;
+    bool inputSkill1Up = false;
+    bool inputSkill2 = false;
+
+    public void RecieveInputs(bool _skill1Down, bool _skill1Up, bool _skill2) {
+        inputSkill1Down = _skill1Down;
+        inputSkill1Up = _skill1Up;
+        inputSkill2 = _skill2;
+    }
