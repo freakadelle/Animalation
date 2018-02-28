@@ -98,7 +98,7 @@ public class MatchRuntime : MonoBehaviour
         clearMatch();
         initSlots();
 
-        Camera.main.GetComponent<CameraMovement>().cameraZoom = 25;
+        Camera.main.GetComponent<CameraMovement>().cameraZoom = 45;
         Camera.main.GetComponent<CameraMovement>().target = LevelGenerator.Instance.flagPoint.transform;
 
         if(automaticStateSwitch)
@@ -152,7 +152,7 @@ public class MatchRuntime : MonoBehaviour
     private void setActivePlayer(GameObject _player)
     {
         activePlayer = _player;
-        Camera.main.GetComponent<CameraMovement>().cameraZoom = 35;
+        Camera.main.GetComponent<CameraMovement>().cameraZoom = 45;
         Camera.main.GetComponent<CameraMovement>().target = activePlayer.transform;
     }
 
